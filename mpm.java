@@ -1,0 +1,7 @@
+class mpm
+{
+	public mpm()
+	{
+	}
+	
+}
