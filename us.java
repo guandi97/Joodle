@@ -11,4 +11,5 @@ class us
 		String profile=profile_io.readLine();
 		
 		
-	}	
+	}
+	public config
