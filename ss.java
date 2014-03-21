@@ -4,10 +4,9 @@ class ss
 {
 	public ss(String scriptpath)
 	{
-		try(
-			
+
 	}
-	public int script_parsar
+	private int script_parsar
 	{
 		
 	}
