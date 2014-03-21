@@ -9,7 +9,10 @@ class us
 		fileIO profile_io=new fileIO("./profiles/Profiles");
 
 		String profile=profile_io.readLine();
-		
+		while(profile.matches(^profile)!=true)
+		{
+			String profile=profile_io.readLine();
+		}
 		
 	}
 	public config
