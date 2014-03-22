@@ -10,7 +10,7 @@ Chemistry("http://moodle.mccallie.org/course/view.php?id=491")
 }
 English("http://moodle.mccallie.org/course/view.php?id=228")
 {
-	RETURN=$(open($ENGLISH) | section(date($WEEK)) | open(hyperlink()) | section(rotation()))
+	RETURN=$(open($ENGLISH) | section(date($WEEK)) | open(hyperlink(*)) | section(rotation()))
 }
 History("http://moodle.mccallie.org/course/view.php?id=353")
 {
@@ -19,12 +19,12 @@ History("http://moodle.mccallie.org/course/view.php?id=353")
 	Primary
 	{
 		DOCLINK=$($SECTION | hyperlink(regexic("Unit")))
-		RETURN=$(drive.document($DOCLINK) | table() | section(date($WEEK)) | section(rotation()))
+		RETURN=$(format.table($(drive.document($DOCLINK))) | section(date($WEEK)) | section(rotation()))
 	}
 	
 	Forums
 	{
-		FORUMS=$(open(hyperlink(*)) | geturl() | regex("/mod/forum/"))
+		FORUMS=$($SECTIION | hyperlink(regex("/mod/forums")))
 		if($FORUMS[0]==0) exit
 		for(i=$FORUMS[0];i!=1;i--)
 		{
@@ -33,3 +33,8 @@ History("http://moodle.mccallie.org/course/view.php?id=353")
 		RETURN=FORUMS
 	}
 }
+Math("http://moodle.mccallie.org/course/view.php?id=268")
+{
+	ACCEL=$(section(1) | open.xlsx(hyperlink(regexic("^ACCEL"))))
+	RETURN=$(section(date($WEEK)) | section(rotation()))
+}	
