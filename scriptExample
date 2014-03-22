@@ -1,0 +1,35 @@
+//field
+static MOODLE="http://moodle.mccallie.org"
+HISTORY_SECTION=9
+
+//script
+
+Chemistry("http://moodle.mccallie.org/course/view.php?id=491")
+{
+	RETURN=$(open($CHEMISTRY) | section(date($WEEK)) | section(rotation()) | open(hyperlink(regexic("^rotation"))) | section(rotation()))
+}
+English("http://moodle.mccallie.org/course/view.php?id=228")
+{
+	RETURN=$(open($ENGLISH) | section(date($WEEK)) | open(hyperlink()) | section(rotation()))
+}
+History("http://moodle.mccallie.org/course/view.php?id=353")
+{
+	SECTION=$(open($HISTORY) | section(regexic("^$HISTORY_SECTION")
+
+	Primary
+	{
+		DOCLINK=$($SECTION | hyperlink(regexic("Unit")))
+		RETURN=$(drive.document($DOCLINK) | table() | section(date($WEEK)) | section(rotation()))
+	}
+	
+	Forums
+	{
+		FORUMS=$(open(hyperlink(*)) | geturl() | regex("/mod/forum/"))
+		if($FORUMS[0]==0) exit
+		for(i=$FORUMS[0];i!=1;i--)
+		{
+			FORUMS[i]=$(hyperlink($FORUMS[i])
+		}
+		RETURN=FORUMS
+	}
+}

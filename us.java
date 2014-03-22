@@ -3,6 +3,9 @@ import java.util.regex.*;
 
 class us
 {
+
+	public 
+
 	fileIO profile_user;
 
 	public us(String profile)
